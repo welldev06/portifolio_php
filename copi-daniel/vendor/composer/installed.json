@@ -1,0 +1,62 @@
+{
+    "packages": [
+        {
+            "name": "projectmit/php-analyzes-execute-file-format",
+            "version": "v0.1.0",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ProJectMIT/php-analyzes-execute-file-format.git",
+                "reference": "bac1c43178abe71994abd24fcc51259738add7dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ProJectMIT/php-analyzes-execute-file-format/zipball/bac1c43178abe71994abd24fcc51259738add7dc",
+                "reference": "bac1c43178abe71994abd24fcc51259738add7dc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "time": "2014-08-30T13:57:32+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "AnalyzesExecuteFileFormat\\": [
+                        "Exception/",
+                        "Lib/",
+                        "ExecuteFormat/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Byoung Wook, Kim",
+                    "email": "quddnr145@naver.com",
+                    "role": "Project Founder"
+                }
+            ],
+            "description": "This project can analyzes for functions list of the Operating-System-Execute-File.",
+            "homepage": "https://github.com/ProJectMIT/php-analyzes-execute-file-format",
+            "keywords": [
+                "PE32",
+                "Portable Executable",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/ProJectMIT/php-analyzes-execute-file-format/issues",
+                "source": "https://github.com/ProJectMIT/php-analyzes-execute-file-format/tree/master"
+            },
+            "install-path": "../projectmit/php-analyzes-execute-file-format"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": [
+        "projectmit/php-analyzes-execute-file-format"
+    ]
+}

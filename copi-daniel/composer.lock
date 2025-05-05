@@ -1,0 +1,70 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "1f57da9cb8d74beea4e99ec6d3e414fb",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "projectmit/php-analyzes-execute-file-format",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ProJectMIT/php-analyzes-execute-file-format.git",
+                "reference": "bac1c43178abe71994abd24fcc51259738add7dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ProJectMIT/php-analyzes-execute-file-format/zipball/bac1c43178abe71994abd24fcc51259738add7dc",
+                "reference": "bac1c43178abe71994abd24fcc51259738add7dc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AnalyzesExecuteFileFormat\\": [
+                        "Exception/",
+                        "Lib/",
+                        "ExecuteFormat/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Byoung Wook, Kim",
+                    "email": "quddnr145@naver.com",
+                    "role": "Project Founder"
+                }
+            ],
+            "description": "This project can analyzes for functions list of the Operating-System-Execute-File.",
+            "homepage": "https://github.com/ProJectMIT/php-analyzes-execute-file-format",
+            "keywords": [
+                "PE32",
+                "Portable Executable",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/ProJectMIT/php-analyzes-execute-file-format/issues",
+                "source": "https://github.com/ProJectMIT/php-analyzes-execute-file-format/tree/master"
+            },
+            "time": "2014-08-30T13:57:32+00:00"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
+}

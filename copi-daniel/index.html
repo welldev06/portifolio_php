@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortfólioNjr</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --primary: #2563eb;
+            --secondary: #f3f4f6;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --icon: '\f186';
+            --hero-bg: linear-gradient(135deg, #f3f4f6 0%, #c3cfe2 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #f5f5f5;
+            --primary: #3b82f6;
+            --secondary: #1e1e1e;
+            --card-bg: #1e1e1e;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --icon: '\f185';
+            --hero-bg: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        /* Botão Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .theme-toggle::before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            content: var(--icon);
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 99;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: var(--hero-bg);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .hero-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Projects Section */
+        .section {
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .project-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            background: var(--secondary);
+            color: var(--text-color);
+            transition: border 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .success {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            border: 1px solid #28a745;
+        }
+
+        .error {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            nav a {
+                margin-left: 15px;
+                font-size: 14px;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+        }
+        .contact-section { text-decoration: black;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Botão Toggle -->
+    <button class="theme-toggle" aria-label="Alternar tema"></button>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">Well<span>Dev06</span></div>
+            <nav>
+                <a href="#sobre">Sobre</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Design & Desenvolvimento Criativo</h1>
+                <p>Crio experiências digitais que combinam beleza e funcionalidade.</p>
+                <a href="#projetos" class="btn">Ver Projetos</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Trabalhando">
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projetos">
+        <h2 class="section-title">Meus Projetos</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Projeto 1">
+                </div>
+                <div class="project-info">
+                    <h3>Dashboard Analytics</h3>
+                    <p>Visualização de dados em tempo real</p>
+                    <div class="project-tags">
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">React</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Projeto 2">
+                </div>
+                <div class="project-info">
+                    <h3>App Mobile</h3>
+                    <p>Solução de mobilidade urbana</p>
+                    <div class="project-tags">
+                        <span class="tag">Flutter</span>
+                        <span class="tag">UX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contato">
+        <div class="contact-section">
+            <h2 class="section-title">Vamos trabalhar juntos?</h2>
+            <div class="contact-form">
+                <form id="contactForm" action="https://formsubmit.co/seu-email@exemplo.com" method="POST">
+                    <!-- Configurações do FormSubmit -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+                    
+                    <div class="form-group">
+                        <label for="name">Seu nome</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Seu  e-mail</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Digite a sua mensagem</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                    
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Dark/Light Mode Toggle
+        const toggleBtn = document.querySelector('.theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Verifica preferência do sistema
+        if (prefersDarkScheme.matches) {
+            document.body.setAttribute('data-theme', 'dark');
+        }
+        
+        // Alterna ao clicar
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            document.body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+            
+            // Opcional: Salva preferência
+            localStorage.setItem('theme', currentTheme === 'dark' ? 'light' : 'dark');
+        });
+        
+        // Mantém tema ao recarregar
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+
+        // Formulário de Contato
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulação de envio (substitua pelo código real de envio)
+            const formData = new FormData(this);
+            
+            // Aqui você pode adicionar AJAX para enviar o formulário
+            // Exemplo com fetch:
+            /*
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    showMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Erro ao enviar mensagem');
+                }
+            })
+            .catch(error => {
+                showMessage('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.', 'error');
+                console.error('Error:', error);
+            });
+            */
+            
+            // Simulação de sucesso (remova quando implementar o código real)
+            setTimeout(() => {
+                showMessage('Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
+                contactForm.reset();
+            }, 1000);
+        });
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = 'form-message ' + type;
+            formMessage.style.display = 'block';
+            
+            // Esconde a mensagem após 5 segundos
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
